@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Character from './components/Character';
-
+import data from './mocks/handlers';
+// 
 const App = () => {
 
-  const [data, setData] = useState();
+  const [swData, setSwData] = useState();
 
   useEffect (() => {
     axios
-    .get('https://swapi.dev/api/1')
+    .get('https://swapi.dev/api/people/1/')
     .then(function(res){
-      setData(res.data);
+      setSwData(res.data);  
+      //alert(res.data.Character);
     })
-    .catch(function(err){
-      console.log(err);
+    .catch(function(err){  
+      console.log('why isnt this working?');
     })
   }, [])
 
-  const ImageInfo = (props) => {
-    <div>
-      <h2>{props.characterName}</h2>
-    </div>
-  }
 
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
@@ -33,10 +30,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <ImageInfo data = {data} />
-      <Character />
+      <Character characterInfo={{...swData}} />      
+      {/* <ImageInfo data = {data} /> */}
     </div>
  );
-}
-
+  }
 export default App;
