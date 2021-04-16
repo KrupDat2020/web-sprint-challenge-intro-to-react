@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Character from './components/Character';
 import data from './mocks/handlers';
+import styled from 'styled-components';
 // 
 const App = () => {
 
